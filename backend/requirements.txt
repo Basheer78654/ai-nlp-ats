@@ -1,0 +1,21 @@
+# AI/NLP Applicant Tracking System — backend dependencies
+# Python >=3.10,<3.13 (tested with 3.12)
+# Install: pip install -r requirements.txt
+
+# --- API ---
+fastapi==0.143.0
+uvicorn[standard]==0.54.0
+pydantic==2.14.1
+python-multipart==0.0.32
+
+# --- Document parsing ---
+pymupdf==1.28.2
+python-docx==1.2.0
+
+# --- NLP / ranking / embeddings ---
+spacy==3.8.16
+sentence-transformers==6.1.0
+rank-bm25==0.2.2
+chromadb==1.5.9
+scikit-learn==1.9.1
+numpy==2.5.4

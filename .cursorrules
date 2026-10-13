@@ -1,0 +1,36 @@
+# AI/NLP Applicant Tracking System — coding standards
+
+Always follow these rules across the entire project.
+
+## Python typing
+
+- Use type hints on every function, method, and class attribute.
+- Prefer explicit return types, including `None` and container types (`list[str]`, `dict[str, Any]`).
+- Do not add untyped helpers, even in scripts or tests.
+
+## Pydantic v2
+
+- Define request/response and domain schemas with Pydantic v2 (`BaseModel`, `Field`, `model_validator`, `field_validator`).
+- Do not use Pydantic v1 APIs (`class Config`, `@validator`, `.dict()`, `.parse_obj()`).
+- Use `.model_dump()` / `.model_validate()` and `ConfigDict` when configuration is needed.
+
+## FastAPI
+
+- Write all route handlers as `async def`.
+- Keep I/O (files, embeddings, vector store, parsers) off the event loop via async APIs or `asyncio.to_thread` for blocking libraries.
+- Inject dependencies with FastAPI `Depends`; do not instantiate services inside route bodies.
+
+## Modular layout
+
+- Split code by concern. Do not put routes, schemas, NLP, parsing, and storage in one file.
+- Prefer a layout like:
+  - `backend/app/api/` — routers
+  - `backend/app/schemas/` — Pydantic v2 models
+  - `backend/app/services/` — resume parsing, ranking, embeddings
+  - `backend/app/core/` — config and shared utilities
+- New features get a new module or package; do not grow a catch-all `main.py` or `utils.py`.
+
+## Style
+
+- Match existing naming and keep functions small and single-purpose.
+- Never introduce untyped code, Pydantic v1 patterns, sync FastAPI routes, or monolithic files.
