@@ -25,3 +25,12 @@ build/
 
 # Logs
 *.log
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+node_modules/
+.env
+.env.*
+dist/
+build/
